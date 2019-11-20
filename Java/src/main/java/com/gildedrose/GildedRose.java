@@ -20,7 +20,7 @@ class GildedRose {
                 shopItem.modifyAmountOfDaysToSellItem();
             });
         } else {
-
+            // old code
         }
     }
 }

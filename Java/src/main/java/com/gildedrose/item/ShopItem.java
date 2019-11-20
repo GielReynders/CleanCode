@@ -29,11 +29,11 @@ public abstract class ShopItem {
         int amount = 1;
 
         if (isConjured) {
-            amount *= 2;
+            amount = doubleAmount(amount);
         }
 
         if (isItemSellTimeExpired()) {
-            amount *= 2;
+            amount = doubleAmount(amount);
         }
 
         item.quality -= amount;
@@ -43,11 +43,16 @@ public abstract class ShopItem {
         }
     }
 
+    private int doubleAmount(int amount) {
+        amount *= 2;
+        return amount;
+    }
+
     void plusQuality(int amount) {
         if (!isMaxQuality()) {
 
             if (isItemSellTimeExpired()) {
-                amount *= 2;
+                amount = doubleAmount(amount);
             }
 
             item.quality += amount;
@@ -60,10 +65,6 @@ public abstract class ShopItem {
 
     private boolean isMaxQuality() {
         return MAX_QUALITY == item.quality;
-    }
-
-    private boolean isaBoolean(int i) {
-        return !(item.quality < i);
     }
 
     private boolean isItemSellTimeExpired() {
